@@ -62,7 +62,7 @@ return defaultCartState;
 
 const CartProvider = props =>{
 
-    const[cartState ,dispatchCartAction]=useReducer(cartReducer , defaultCartState); 
+    const [cartState ,dispatchCartAction]=useReducer(cartReducer , defaultCartState); 
 
     const addItemtoCart =item =>{
         dispatchCartAction({
@@ -74,12 +74,16 @@ const CartProvider = props =>{
         dispatchCartAction({type:'REMOVE' ,id: id});
     }
 
+    const clearOnSubmit =()=>{
+        dispatchCartAction({type:"CLEAR"});
+    }
+
  const cartContext ={
      items:cartState.items,
      totalAmount:cartState.totalAmount,
      addItem:addItemtoCart ,
      removeItem:removeItemfromCart,
-     checkItem:false
+     clearOnSubmit:clearOnSubmit
  }
  
 
